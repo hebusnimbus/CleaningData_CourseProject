@@ -63,6 +63,7 @@ if (
 
 activities     <- read.csv(file.activities, sep=' ', header=FALSE)
 features       <- read.csv(file.features,   sep=' ', header=FALSE)
+
 features.width <- rep.int(c(-1, 15), dim(features)[1]) # each measure is 15 bytes long, separated by a space
 
 subjects.test  <- read.fwf(file.test.subjects,  c(2))

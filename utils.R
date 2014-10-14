@@ -1,18 +1,3 @@
-#################################################################################
-#                                                                               #
-# Copyright (C) 2014, Joanes Espanol                                            #
-# All rights reserved.  Confidential and Proprietary.                           #
-#                                                                               #
-# This information is provided under the Master Supply Agreement between the    #
-# parties and is considered a portion of the Licensed Software and Confidential #
-# Information as defined therein.                                               #
-# This information is provided "as is" without warranty of any kind either      #
-# expressed or implied, including, but not limited to, the implied warranties   #
-# of merchantability and/or fitness for a particular purpose.                   #
-#                                                                               #
-#################################################################################
-
-
 # ==============================================================================
 # CONFIGURATION
 # ==============================================================================
@@ -155,21 +140,14 @@ unzip_file <- function(zip, name, file) {
 
 
 # ---------------------------------------------------------------------------- #
-# Unzips a file if it has not already been extracted.                          #
-#                                                                              #
-# If the path points to a file, the content is extracted into it.              #
-#                                                                              #
-# If the path points to a directory, a file is created inside it, with a name  #
-# matching the name of the file to extract, and the content is extracted into  #
-# it.                                                                          #
+# Unzips all the content (file and folders) of a zip file.                     #
 #                                                                              #
 # INPUT:                                                                       #
 #   - the path to the zip file                                                 #
-#   - the name of the file to extract from the zip file                        #
-#   - the path (file or folder) where to extract the file                      #
+#   - the directory where to extract the file                                  #
 #                                                                              #
 # OUTPUT:                                                                      #
-#   - the path where the file was extracted to                                 #
+#   - no output                                                                #
 # ---------------------------------------------------------------------------- #
 
 unzip_all <- function(zip, dir) {
