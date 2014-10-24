@@ -1,8 +1,6 @@
 ## 1. Goal
 
-The goal of this project is to study data from the accelerometers from the
-Samsung Galaxy S smartphone, and to generate a more condense, and tidy version
-of the original (almost raw) data.
+The goal of this project is to study data from the accelerometers from the Samsung Galaxy S smartphone, and to generate a more condense, and tidy version of the original (almost raw) data.
 
 <BR/>
 
@@ -20,7 +18,7 @@ The functions of the utils.R file are as follow:
 * `install_package`: installs a package if it has not already been installed
 * `create_dir`: recursively creates a directory if it does not already exist
 * `download_file`: downloads a file from the Internet if it does not already exist on the local disk
-* `unzip_file`: unzips a file if it has not already been extraced
+* `unzip_file`: unzips a file if it has not already been extracted
 * `unzip_all`: unzips all file(s) inside an archive file
 
 These are functions typically used when setting up a project, and when downloading data from its original location.  Most of them (*install_package*, *create_dir*, *download_file* and *unzip_file*) are "re-entrant", in the sense that they only perform an operation if it has not already been done, so they can be called over and over again without performance impact (for example, calling *download_file* on the same url and file multiple times will only download it once).
@@ -122,7 +120,7 @@ The guidelines from the course suggest the following:
 * no duplicates
 * avoid punctuation characters like underscores, dots or white spaces
 
-Here, the variables end up having very long names in order to be descriptive.  It became hard to read, so we opted for a Camel case approach instead of all lower case (for example, conside _bodybodygyroscopejerkmagnitude_ vs _BodyBodyGyroscopeJerkMagnitude_).
+Here, the variables end up having very long names in order to be descriptive.  It became hard to read, so we opted for a Camel case approach instead of all lower case (for example, consider _bodybodygyroscopejerkmagnitude_ vs _BodyBodyGyroscopeJerkMagnitude_).
 
 The guidelines also recommend to avoid punctuation characters, but here again we felt that the '.' made it easier to read and recognize variables belonging to the same family of measure (equivalent to a namespace if you will).  For example, consider _bodyaccelerationx_, _bodyaccelerationy_ and _bodyaccelerationz_ versus _BodyAcceleration.X_, _BodyAcceleration.Y_ and _BodyAcceleration.Z_: in the latter example, it becomes more obvious that the three components X, Y and Z belong to the same measure _BodyAcceleration_.
 
@@ -249,7 +247,7 @@ A quick visual inspection confirms that the numbers in the long data set are cor
 
 A quick visual inspection once again confirms that the numbers in the tidy data set are correct and as expected:
 
-* the numner of observations (180 = 6 * 30) is the product of the number of activities (6), and the number of (unique) subjects (30).
+* the number of observations (180 = 6 * 30) is the product of the number of activities (6), and the number of (unique) subjects (30).
 * the number of columns is 68: the 66 features, and the two additional columns _Activity_ and _Subject_.
 
 ```
