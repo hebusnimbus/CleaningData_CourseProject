@@ -164,6 +164,7 @@ names <- gsub("StandardDeviation.Y", "Y.StandardDeviation", names) # Reverse ord
 names <- gsub("StandardDeviation.Z", "Z.StandardDeviation", names) # Reverse order of function and axis
 names <- gsub("^t",                  "",                    names) # Remove prefix 't' (time signal)
 names <- gsub("^f(.*)",              "\\1.FFT",             names) # Replace prefix 'f' (frequency signal) by suffix FFT (Fast Fourier Transform)
+names <- gsub("BodyBody",            "Body",                names) # Fix spelling errors (duplicated Body)
 
 names(data) <- names
 
