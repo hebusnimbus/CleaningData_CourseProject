@@ -257,4 +257,4 @@ A quick visual inspection once again confirms that the numbers in the tidy data 
 # 'tidy' columns      : 68
 ```
 
-Finally, the tidy data set is exported to a file on the local disk with a call to `wtite.table(...)`.
+Finally, the tidy data set is exported to a file on the local disk with a call to `write.table(...)`.
