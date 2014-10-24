@@ -4,7 +4,7 @@ Source:
 
 * Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
 * Smartlab - Non Linear Complex Systems Laboratory
-* DITEN - Universit√  degli Studi di Genova, Genoa I-16145, Italy.
+* DITEN - Universit√É  degli Studi di Genova, Genoa I-16145, Italy.
 * activityrecognition '@' smartlab.ws
 * www.smartlab.ws
 * URL: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones.
@@ -180,7 +180,7 @@ Next, variable names (i.e. column names) were renamed to provide more readabilit
 | ^f(.\*)             | \\1.FFT             |
 | BodyBody            | Body                |
 
-Please see the README.md file for more details about the renaming patterns and the choices which were made during this process.  Here is a list of the final variable names (re-ordered for readibility):
+Please see the `README.md` file for more details about the renaming patterns and the choices which were made during this process.  Here is a list of the final variable names (re-ordered for readibility):
 
 | measure                       | axis | feature           | domain |
 |-------------------------------|:----:|-------------------|:------:|
