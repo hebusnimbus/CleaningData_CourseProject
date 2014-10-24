@@ -11,7 +11,8 @@ source(file.path(script.dir, 'utils.R'))
 
 # ----------  Libraries  ----------
 
-install_package("dplyr"); library(dplyr)
+install_package("dplyr");    library(dplyr)
+install_package("reshape2"); library(reshape2)
 
 
 # ----------  Constants & variables  ----------
@@ -72,6 +73,11 @@ measures.test  <- read.fwf(file.test.measures,  features.width)
 measures.train <- read.fwf(file.train.measures, features.width)
 labels.test    <- read.fwf(file.test.labels,    c(1))
 labels.train   <- read.fwf(file.train.labels,   c(1))
+
+printf("\n")
+
+printf("# activities: %d\n", dim(activities)[1])
+printf("# features  : %d\n", dim(features)[1])
 
 printf("\n")
 
@@ -139,15 +145,46 @@ data$Activity <- inner_join(labels, activities, c("ID" = "ID"))$Name
 data$Subject  <- subjects$ID
 
 
+# ----------  Make meaningful variable names  ----------
+
+names <- names(data)
+names <- gsub("Acc",                 "Acceleration",        names) # Full name for Acceleration
+names <- gsub("Gyro",                "Gyroscope",           names) # Full name for Gyroscope
+names <- gsub("Mag",                 "Magnitude",           names) # Full name for Magnitude
+names <- gsub("-mean\\(\\)",         ".Mean",               names) # Remove "punctuation" characters like '-', '(' or ')'
+names <- gsub("-std\\(\\)",          ".StandardDeviation",  names) # Full name for StandardDeviation + remove "punctuation" characters like '-', '(' or ')'
+names <- gsub("-X",                  ".X",                  names) # Remove "punctuation" characters like '-'
+names <- gsub("-Y",                  ".Y",                  names) # Remove "punctuation" characters like '-'
+names <- gsub("-Z",                  ".Z",                  names) # Remove "punctuation" characters like '-'
+names <- gsub("Mean.X",              "X.Mean",              names) # Reverse order of function and axis
+names <- gsub("Mean.Y",              "Y.Mean",              names) # Reverse order of function and axis
+names <- gsub("Mean.Z",              "Z.Mean",              names) # Reverse order of function and axis
+names <- gsub("StandardDeviation.X", "X.StandardDeviation", names) # Reverse order of function and axis
+names <- gsub("StandardDeviation.Y", "Y.StandardDeviation", names) # Reverse order of function and axis
+names <- gsub("StandardDeviation.Z", "Z.StandardDeviation", names) # Reverse order of function and axis
+names <- gsub("^t",                  "",                    names) # Remove prefix 't' (time signal)
+names <- gsub("^f(.*)",              "\\1.FFT",             names) # Replace prefix 'f' (frequency signal) by suffix FFT (Fast Fourier Transform)
+
+names(data) <- names
+
+
 # ----------  Create tidy data  ----------
 
 data.long <- melt(data, id.vars=c("Activity", "Subject"))
 data.tidy <- dcast(data.long, Activity + Subject ~ variable, mean)
 
+printf("# 'long' observations : %d\n", dim(data.long)[1])
+printf("# 'long' columns      : %d\n", dim(data.long)[2])
+printf("\n")
+
+printf("# 'tidy' observations : %d\n", dim(data.tidy)[1])
+printf("# 'tidy' columns      : %d\n", dim(data.tidy)[2])
+printf("\n")
+
 
 # ----------  Output tidy data  ----------
 
-write.table(x = data.tidy, file = file.output.txt, row.names = F)
+write.table(x = data.tidy, file = file.output.txt, row.names = FALSE)
 
 
 # ===============================================================================
