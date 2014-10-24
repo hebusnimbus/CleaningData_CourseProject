@@ -187,20 +187,19 @@ Here is the list of final column names in the data:
 | GravityAccelerationMagnitude  |      | Mean              |        |
 | GravityAccelerationMagnitude  |      | StandardDeviation |        |
 | BodyAccelerationJerkMagnitude |      | Mean              |        |
+| BodyAccelerationJerkMagnitude |      | Mean              | FFT    |
 | BodyAccelerationJerkMagnitude |      | StandardDeviation |        |
+| BodyAccelerationJerkMagnitude |      | StandardDeviation | FFT    |
 | BodyGyroscopeMagnitude        |      | Mean              |        |
+| BodyGyroscopeMagnitude        |      | Mean              | FFT    |
 | BodyGyroscopeMagnitude        |      | StandardDeviation |        |
+| BodyGyroscopeMagnitude        |      | StandardDeviation | FFT    |
 | BodyGyroscopeJerkMagnitude    |      | Mean              |        |
+| BodyGyroscopeJerkMagnitude    |      | Mean              | FFT    |
 | BodyGyroscopeJerkMagnitude    |      | StandardDeviation |        |
-|                               |      |                   |        |
-| BodyBodyGyroscopeMagnitude        |  | Mean              | FFT    |
-| BodyBodyGyroscopeMagnitude        |  | StandardDeviation | FFT    |
-| BodyBodyAccelerationJerkMagnitude |  | Mean              | FFT    |
-| BodyBodyAccelerationJerkMagnitude |  | StandardDeviation | FFT    |
-| BodyBodyGyroscopeJerkMagnitude    |  | Mean              | FFT    |
-| BodyBodyGyroscopeJerkMagnitude    |  | StandardDeviation | FFT    |
+| BodyGyroscopeJerkMagnitude    |      | StandardDeviation | FFT    |
 
-From that list, and thanks to the naming convention adopted, the last 6 names stand out, as they are most likely misspelled (the token "Body"" is duplicated in the name).  Assuming this is the case (and if we remove the extra token), we can also see very quickly which measures are missing/have not had a FFT applied to them: _GravityAcceleration_, _BodyGyroscopeJerk_ and _GravityAccelerationMagnitude_.
+From that list, and thanks to the naming convention adopted, the last 6 names stand out, as they are most likely misspelled: the token "Body"" is duplicated in the name(_BodyBodyGyroscopeMagnitude_ (mean and standard deviation), _BodyBodyAccelerationJerkMagnitude_ (mean and standard deviation) and _BodyBodyGyroscopeJerkMagnitude_ (mean and standard deviation)).  Assuming this is the case (and if we remove the extra token), we can also see very quickly which measures are missing/have not had a FFT applied to them: _GravityAcceleration_, _BodyGyroscopeJerk_ and _GravityAccelerationMagnitude_.
 
 All and all, we have found out that, as long as the naming __convention is consistent__ over all the variables, it does not matter too much what the convention actually is, as long as it __makes sense and variables are easily readable__.
 
@@ -214,20 +213,20 @@ Creating a tidy data set is performed in two steps:
 * First the data is "melted" according to the two variables of interest (_Activity_ and _Subject_), meaning all the feature columns are aggregated into one column (or rather two, _variable_ and _value_): this is done with a call to `melt(..)` and generates a long and skinny data set.
 
 ```
-               Activity Subject                variable                                   value
-1              STANDING       2 BodyAcceleration.X.Mean                               0.2571778
-2              STANDING       2 BodyAcceleration.X.Mean                               0.2860267
-3              STANDING       2 BodyAcceleration.X.Mean                               0.2754848
-4              STANDING       2 BodyAcceleration.X.Mean                               0.2702982
-5              STANDING       2 BodyAcceleration.X.Mean                               0.2748330
-6              STANDING       2 BodyAcceleration.X.Mean                               0.2792199
+               Activity Subject                variable                               value
+1              STANDING       2 BodyAcceleration.X.Mean                           0.2571778
+2              STANDING       2 BodyAcceleration.X.Mean                           0.2860267
+3              STANDING       2 BodyAcceleration.X.Mean                           0.2754848
+4              STANDING       2 BodyAcceleration.X.Mean                           0.2702982
+5              STANDING       2 BodyAcceleration.X.Mean                           0.2748330
+6              STANDING       2 BodyAcceleration.X.Mean                           0.2792199
 ...
-679729 WALKING_UPSTAIRS      30 BodyBodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7547290
-679730 WALKING_UPSTAIRS      30 BodyBodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7239514
-679731 WALKING_UPSTAIRS      30 BodyBodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7711831
-679732 WALKING_UPSTAIRS      30 BodyBodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7263718
-679733 WALKING_UPSTAIRS      30 BodyBodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.6894209
-679734 WALKING_UPSTAIRS      30 BodyBodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7451204
+679729 WALKING_UPSTAIRS      30 BodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7547290
+679730 WALKING_UPSTAIRS      30 BodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7239514
+679731 WALKING_UPSTAIRS      30 BodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7711831
+679732 WALKING_UPSTAIRS      30 BodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7263718
+679733 WALKING_UPSTAIRS      30 BodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.6894209
+679734 WALKING_UPSTAIRS      30 BodyGyroscopeJerkMagnitude.StandardDeviation.FFT -0.7451204
 ```
 
 A quick visual inspection confirms that the numbers in the long data set are correct and as expected:
